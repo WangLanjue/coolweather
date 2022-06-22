@@ -34,7 +34,7 @@
     <list>
         <mapping class="com.wlj.coolweather.db.City"/>
         <mapping class="com.wlj.coolweather.db.Province"/>
-        <mapping class="com.wlj.coolweather.db.county"/>
+        <mapping class="com.wlj.coolweather.db.County"/>
     </list>
 
     <!--

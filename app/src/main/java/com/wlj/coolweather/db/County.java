@@ -3,7 +3,7 @@ package com.wlj.coolweather.db;
 import org.litepal.crud.LitePalSupport;
 
 /*县信息*/
-public class county extends LitePalSupport {
+public class County extends LitePalSupport {
     private int id;
     private String countyName;
     private String weatherId;
