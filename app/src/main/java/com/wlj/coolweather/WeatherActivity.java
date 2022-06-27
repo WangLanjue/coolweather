@@ -1,5 +1,6 @@
 package com.wlj.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.wlj.coolweather.gson.Forecast;
 import com.wlj.coolweather.gson.Weather;
+import com.wlj.coolweather.service.AutoUpdateService;
 import com.wlj.coolweather.util.HttpUtil;
 import com.wlj.coolweather.util.Utility;
 
@@ -97,6 +99,7 @@ public class WeatherActivity extends AppCompatActivity {
             loadBingPic();
         }
         if(weatherString!=null){
+            //有缓存直接解析
             Weather weather= Utility.handleWeatherResponse(weatherString);
             mWeatherId=weather.basic.weatherId;
             showWeatherInfo(weather);
@@ -170,6 +173,8 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.apply();
                             mWeatherId=weather.basic.weatherId;
                             showWeatherInfo(weather);
+                            Intent intent=new Intent(WeatherActivity.this, AutoUpdateService.class);
+                            startService(intent);
                         }
                         else{
                             Toast.makeText(WeatherActivity.this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
